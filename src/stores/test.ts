@@ -3,8 +3,8 @@ import { defineStore } from 'pinia'
 import questionsJson from '../assets/questions.json'
 
 export const useTestStore = defineStore('test', () => {
-  const allQuestions = ref(questionsJson)
-  const currentTestQuestions = ref([])
+  const allQuestions: any = ref(questionsJson)
+  const currentTestQuestions: any = ref([])
   const currentTestQuestionCounter = ref(0)
   const currentTestQuestion = ref({})
   const currentTestScore = ref(0)
