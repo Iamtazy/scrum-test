@@ -31,6 +31,11 @@ export const useTestStore = defineStore('test', () => {
     currentTestQuestion.value = currentTestQuestions.value[currentTestQuestionCounter.value]
   }
 
+  const backToPrevious = () => {
+    currentTestQuestionCounter.value--
+    currentTestQuestion.value = currentTestQuestions.value[currentTestQuestionCounter.value]
+  }
+
   return {
     allQuestions,
     currentTestQuestions,
@@ -40,6 +45,7 @@ export const useTestStore = defineStore('test', () => {
     currentTestScore,
     startAllQuestionTest,
     startSimulatedTest,
+    backToPrevious,
     getNextQuestion
   }
 })

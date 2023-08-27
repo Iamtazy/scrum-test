@@ -5,7 +5,11 @@
       class="text-center relative bottom-4 lg:bottom-28"
       @testTimeout="router.push('/test-summary')"
     />
-    <s-question :questionObject="currentTestQuestion" @answerSubmitted="handleAnswers" />
+    <s-question
+      :questionObject="currentTestQuestion"
+      @answerSubmitted="handleAnswers"
+      @backToPrevious="backToPrevious"
+    />
     <div class="text-center font-bold mt-10">
       {{ currentTestQuestionCounter + 1 }} / {{ currentTestQuestions.length }}
     </div>
@@ -44,6 +48,10 @@ const handleAnswers = (answers) => {
     return
   }
   testStore.getNextQuestion()
+}
+
+const backToPrevious = () => {
+  testStore.backToPrevious()
 }
 
 onMounted(() => {
