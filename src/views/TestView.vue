@@ -2,7 +2,7 @@
   <div>
     <s-timer
       v-if="route.path === '/simulate-test'"
-      class="text-center relative bottom-28"
+      class="text-center relative bottom-4 lg:bottom-28"
       @testTimeout="router.push('/test-summary')"
     />
     <s-question :questionObject="currentTestQuestion" @answerSubmitted="handleAnswers" />
