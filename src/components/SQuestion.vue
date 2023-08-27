@@ -14,10 +14,11 @@
       </div>
     </div>
     <v-btn
+      :disabled="selectedAnswers.length === 0"
       ripple
       color="rgba(110, 231, 183, 1)"
       class="mt-6 ml-9"
-      @click="emit('answerSubmitted', selectedAnswers)"
+      @click="submitAnswer"
       >Submit answer</v-btn
     >
   </div>
@@ -25,13 +26,20 @@
 
 <script setup>
 import { ref } from 'vue'
-defineProps(['questionObject'])
+const props = defineProps(['questionObject'])
 const emit = defineEmits(['answerSubmitted'])
 
 const selectedAnswers = ref([])
 const answerRefs = ref([])
 
 const clickAnswer = (answer, index) => {
+  if (!props.questionObject.isMultipleChoice) {
+    selectedAnswers.value = []
+    answerRefs.value.forEach((ref) => {
+      ref.classList.remove('bg-blue-200')
+      ref.classList.add('bg-white')
+    })
+  }
   answerRefs.value[index].classList.remove('bg-white')
   answerRefs.value[index].classList.add('bg-blue-200')
   if (!selectedAnswers.value.includes(answer)) {
@@ -41,6 +49,15 @@ const clickAnswer = (answer, index) => {
     answerRefs.value[index].classList.add('bg-white')
     selectedAnswers.value.splice(selectedAnswers.value.indexOf(answer), 1)
   }
+}
+
+const submitAnswer = () => {
+  emit('answerSubmitted', selectedAnswers.value)
+  selectedAnswers.value = []
+  answerRefs.value.forEach((ref) => {
+    ref.classList.remove('bg-blue-200')
+    ref.classList.add('bg-white')
+  })
 }
 </script>
 

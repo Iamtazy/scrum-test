@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import SimulateTestView from '../views/SimulateTestView.vue'
-import AllQuestionsView from '../views/AllQuestionsView.vue'
+import TestView from '../views/TestView.vue'
+import SummaryView from '../views/SummaryView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,12 +14,17 @@ const router = createRouter({
     {
       path: '/simulate-test',
       name: 'simulate-test',
-      component: SimulateTestView
+      component: TestView
     },
     {
       path: '/all-questions',
       name: 'all-questions',
-      component: AllQuestionsView
+      component: TestView
+    },
+    {
+      path: '/test-summary',
+      name: 'test-summary',
+      component: SummaryView
     }
   ]
 })
